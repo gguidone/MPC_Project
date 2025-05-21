@@ -32,7 +32,7 @@ classdef MPC_TS
              constraints = [constraints, X{k+1} == A*X{k} + B*U{k}];
              constraints = [constraints, Hu *U{k}<= hu, Hx*X{k+1}<=hx];
             end
-            costraints = [constraints, H*X{N+1}<=h];
+            constraints = [constraints, H*X{N+1}<=h];
             objective = objective + X{N+1}'*P*X{N+1};
             opts = sdpsettings('verbose',1,'solver','quadprog');
             obj.yalmip_optimizer = optimizer(constraints,objective,opts,x0,{U{1} objective});

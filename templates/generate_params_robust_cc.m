@@ -12,10 +12,16 @@ function [params_robust] = generate_params_robust_cc(params)
     % Implement your solution here:
     eta_min = params.exercise.eta_min;
     eta_max = params.exercise.eta_max;
+    eta_A = params.exercise.etaA;
     T0_min = params.exercise.To_min;
     T0_max = params.exercise.To_max;
+    T0 = params.exercise.To;
     alpha = [params.model.a1o;params.model.a2o;params.model.a3o];
     Bd = params.model.Bd;
-    params_robust.constraints.DisturbanceMatrix = [eye(params.model.nx);-eye(params.model.nx)];
-    params_robust.constraints.DisturbanceRHS = [Bd*(alpha*T0_max+eta_max);-Bd*(alpha*T0_min+eta_min)];
+    d_min = alpha * T0_min + eta_min;
+    d_max = alpha * T0_max + eta_max;
+    d =( alpha * T0 + eta_A);
+    params_robust.constraints.DisturbanceMatrix = [inv(Bd)*eye(params.model.nx);-inv(Bd)*eye(params.model.nx)];
+    params_robust.constraints.DisturbanceRHS = [(d_max - d);-(d_min - d)];
+    
 end

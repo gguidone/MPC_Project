@@ -7,9 +7,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % CONTINUE BELOW THIS LINE
-clear all
-params = generate_params_cc();
-params = generate_params_delta_cc(params);
+%clear all
+%params = generate_params_cc();
+%params = generate_params_delta_cc(params);
 
 Q = diag([4700,5000,10]);
 R = diag([0.07,0.007]);

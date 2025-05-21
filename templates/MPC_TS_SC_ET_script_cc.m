@@ -20,7 +20,7 @@ MPC = MPC_TS(Q,R,N,H,h,params);
 x0 = params.exercise.InitialConditionB;  
 [X,U, ctrl_info] = simulate(x0,MPC, params);
 [X_soft,U_soft, ctrl_info_soft] = simulate(x0,soft_MPC, params);
-
+disp(U_soft - U)
 %% Save
 current_folder = fileparts(which(mfilename));
 save(fullfile(current_folder, "MPC_TS_SC_ET_script_cc.mat"), 'v', 'S', 'v_t', 'S_t');
